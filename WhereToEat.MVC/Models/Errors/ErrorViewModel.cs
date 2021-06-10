@@ -1,6 +1,4 @@
-using System;
-
-namespace WhereToEat.MVC.Models
+namespace WhereToEat.MVC.Models.Errors
 {
     public class ErrorViewModel
     {
