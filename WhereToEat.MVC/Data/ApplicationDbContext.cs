@@ -12,5 +12,10 @@ namespace WhereToEat.MVC.Data
             : base(options)
         {
         }
+
+        // public DbSet<Connection> Connections { get; set; }
+        public DbSet<Restaurant> Restaurants { get; set; }
+        public DbSet<Cuisine> Cuisines { get; set; }
+        public DbSet<Style> Styles { get; set; }
     }
 }
