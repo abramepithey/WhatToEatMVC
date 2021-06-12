@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace WhereToEat.MVC.Data
 {
@@ -6,5 +7,7 @@ namespace WhereToEat.MVC.Data
     {
         public Guid StyleId { get; set; }
         public string Name { get; set; }
+
+        public IEnumerable<Restaurant> Restaurants { get; set; }
     }
 }
