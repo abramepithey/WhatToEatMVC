@@ -7,7 +7,7 @@ namespace WhereToEat.MVC.Contracts
 {
     public interface ICuisineServices
     {
-        Task<IList<CuisineViewModel>> ListCuisines();
+        Task<IList<CuisineDetailsModel>> ListCuisines();
         Task<bool> CreateCuisine(CuisineViewModel newCuisine);
         Task<CuisineViewModel> GetCuisineById(Guid cuisineId);
         Task<bool> UpdateCuisine(Guid cuisineId, CuisineDetailsModel updatedCuisine);
