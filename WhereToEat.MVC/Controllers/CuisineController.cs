@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WhereToEat.MVC.Contracts;
 using WhereToEat.MVC.Data;
+using WhereToEat.MVC.Models.Cuisines;
 
 namespace WhereToEat.MVC.Controllers
 {
@@ -24,7 +25,8 @@ namespace WhereToEat.MVC.Controllers
         // GET: Cuisine
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Cuisines.ToListAsync());
+            var cuisines = await _services.ListCuisines();
+            return View(cuisines);
         }
 
         // GET: Cuisine/Details/5
