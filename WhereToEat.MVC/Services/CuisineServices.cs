@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using WhereToEat.MVC.Contracts;
+using WhereToEat.MVC.Data;
 using WhereToEat.MVC.Models.Cuisines;
 
 namespace WhereToEat.MVC.Services
@@ -16,7 +18,12 @@ namespace WhereToEat.MVC.Services
         
         public async Task<IList<CuisineViewModel>> ListCuisines()
         {
-            throw new NotImplementedException();
+            List<CuisineViewModel> cuisines = _context.Cuisines.Select(c => 
+                new CuisineViewModel
+                {
+                    Name = c.Name
+                }).ToList();
+            return cuisines;
         }
 
         public async Task<bool> CreateCuisine(CuisineViewModel newCuisine)
