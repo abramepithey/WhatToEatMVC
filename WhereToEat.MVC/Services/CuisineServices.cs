@@ -18,11 +18,11 @@ namespace WhereToEat.MVC.Services
         
         public async Task<IList<CuisineViewModel>> ListCuisines()
         {
-            List<CuisineViewModel> cuisines = _context.Cuisines.Select(c => 
+            List<CuisineViewModel> cuisines = await _context.Cuisines.Select(c => 
                 new CuisineViewModel
                 {
                     Name = c.Name
-                }).ToList();
+                }).ToListAsync();
             return cuisines;
         }
 
