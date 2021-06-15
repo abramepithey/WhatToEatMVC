@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using WhereToEat.MVC.Contracts;
 using WhereToEat.MVC.Data;
 using WhereToEat.MVC.Models.Cuisines;
@@ -28,7 +29,9 @@ namespace WhereToEat.MVC.Services
 
         public async Task<bool> CreateCuisine(CuisineViewModel newCuisine)
         {
-            throw new NotImplementedException();
+            Cuisine cuisine = new Cuisine {Name = newCuisine.Name};
+            _context.Cuisines.Add(cuisine);
+            return await _context.SaveChangesAsync() == 1;
         }
 
         public async Task<CuisineViewModel> GetCuisineById(Guid cuisineId)
