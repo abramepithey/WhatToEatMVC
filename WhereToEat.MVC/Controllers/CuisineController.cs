@@ -58,13 +58,11 @@ namespace WhereToEat.MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CuisineId,Name")] Cuisine cuisine)
+        public async Task<IActionResult> Create([Bind("CuisineId,Name")] CuisineViewModel cuisine)
         {
             if (ModelState.IsValid)
             {
-                cuisine.CuisineId = Guid.NewGuid();
-                _context.Add(cuisine);
-                await _context.SaveChangesAsync();
+                await _services.CreateCuisine(cuisine);
                 return RedirectToAction(nameof(Index));
             }
             return View(cuisine);
