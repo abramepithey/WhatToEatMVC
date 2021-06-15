@@ -12,6 +12,8 @@ using WhereToEat.MVC.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WhereToEat.MVC.Contracts;
+using WhereToEat.MVC.Services;
 
 namespace WhereToEat.MVC
 {
@@ -31,6 +33,8 @@ namespace WhereToEat.MVC
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
+
+            services.AddTransient<ICuisineServices, CuisineServices>();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
