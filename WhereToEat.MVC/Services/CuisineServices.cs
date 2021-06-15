@@ -8,6 +8,12 @@ namespace WhereToEat.MVC.Services
 {
     public class CuisineServices : ICuisineServices
     {
+        private readonly ApplicationDbContext _context;
+        public CuisineServices(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+        
         public async Task<IList<CuisineViewModel>> ListCuisines()
         {
             throw new NotImplementedException();
