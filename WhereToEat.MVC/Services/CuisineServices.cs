@@ -30,7 +30,7 @@ namespace WhereToEat.MVC.Services
 
         public async Task<bool> CreateCuisine(CuisineViewModel newCuisine)
         {
-            Cuisine cuisine = new Cuisine {Name = newCuisine.Name};
+            Cuisine cuisine = new Cuisine {CuisineId = Guid.NewGuid(), Name = newCuisine.Name};
             _context.Cuisines.Add(cuisine);
             return await _context.SaveChangesAsync() == 1;
         }
