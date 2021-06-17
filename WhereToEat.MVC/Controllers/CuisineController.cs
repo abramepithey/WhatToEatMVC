@@ -53,6 +53,11 @@ namespace WhereToEat.MVC.Controllers
             return View();
         }
 
+        public PartialViewResult CreatePartial()
+        {
+            return PartialView("_CreatePartial");
+        }
+
         // POST: Cuisine/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
