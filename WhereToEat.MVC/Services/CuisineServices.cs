@@ -17,10 +17,10 @@ namespace WhereToEat.MVC.Services
             _context = context;
         }
         
-        public async Task<IList<CuisineDetailsModel>> ListCuisines()
+        public async Task<IList<CuisineViewModel>> ListCuisines()
         {
-            List<CuisineDetailsModel> cuisines = await _context.Cuisines.Select(c => 
-                new CuisineDetailsModel()
+            List<CuisineViewModel> cuisines = await _context.Cuisines.Select(c => 
+                new CuisineViewModel()
                 {
                     CuisineId = c.CuisineId,
                     Name = c.Name
@@ -40,7 +40,7 @@ namespace WhereToEat.MVC.Services
             throw new NotImplementedException();
         }
 
-        public async Task<bool> UpdateCuisine(Guid cuisineId, CuisineDetailsModel updatedCuisine)
+        public async Task<bool> UpdateCuisine(Guid cuisineId, CuisineViewModel updatedCuisine)
         {
             throw new NotImplementedException();
         }
