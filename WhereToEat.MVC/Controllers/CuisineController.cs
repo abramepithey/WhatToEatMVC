@@ -119,9 +119,7 @@ namespace WhereToEat.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var cuisine = await _context.Cuisines.FindAsync(id);
-            _context.Cuisines.Remove(cuisine);
-            await _context.SaveChangesAsync();
+            await _services.DeleteCuisine(id);
             return RedirectToAction(nameof(Index));
         }
     }
