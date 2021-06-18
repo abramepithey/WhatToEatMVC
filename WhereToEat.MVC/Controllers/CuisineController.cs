@@ -32,13 +32,7 @@ namespace WhereToEat.MVC.Controllers
         // GET: Cuisine/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var cuisine = await _context.Cuisines
-                .FirstOrDefaultAsync(m => m.CuisineId == id);
+            var cuisine = await _services.GetCuisineById(id);
             if (cuisine == null)
             {
                 return NotFound();
@@ -76,12 +70,7 @@ namespace WhereToEat.MVC.Controllers
         // GET: Cuisine/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var cuisine = await _context.Cuisines.FindAsync(id);
+            var cuisine = await _services.GetCuisineById(id);
             if (cuisine == null)
             {
                 return NotFound();
@@ -127,13 +116,7 @@ namespace WhereToEat.MVC.Controllers
         // GET: Cuisine/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var cuisine = await _context.Cuisines
-                .FirstOrDefaultAsync(m => m.CuisineId == id);
+            var cuisine = await _services.GetCuisineById(id);
             if (cuisine == null)
             {
                 return NotFound();
