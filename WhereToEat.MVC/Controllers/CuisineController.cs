@@ -152,10 +152,5 @@ namespace WhereToEat.MVC.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
-        private bool CuisineExists(Guid id)
-        {
-            return _context.Cuisines.Any(e => e.CuisineId == id);
-        }
     }
 }

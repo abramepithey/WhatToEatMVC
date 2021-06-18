@@ -49,5 +49,10 @@ namespace WhereToEat.MVC.Services
         {
             throw new NotImplementedException();
         }
+        
+        private bool CuisineExists(Guid id)
+        {
+            return _context.Cuisines.Any(e => e.CuisineId == id);
+        }
     }
 }
