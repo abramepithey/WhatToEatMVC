@@ -85,9 +85,9 @@ namespace WhereToEat.MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("CuisineId,Name")] Cuisine cuisine)
+        public async Task<IActionResult> Edit(Guid id, [Bind("CuisineId,Name")] CuisineViewModel newCuisine)
         {
-            if (id != cuisine.CuisineId)
+            if (id != newCuisine.CuisineId)
             {
                 return NotFound();
             }
