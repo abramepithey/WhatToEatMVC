@@ -73,7 +73,9 @@ namespace WhereToEat.MVC.Services
 
         public async Task<bool> DeleteCuisine(Guid cuisineId)
         {
-            throw new NotImplementedException();
+            var cuisine = await _context.Cuisines.FindAsync(cuisineId);
+            _context.Cuisines.Remove(cuisine);
+            return await _context.SaveChangesAsync() == 1;
         }
         
         private bool CuisineExists(Guid id)
