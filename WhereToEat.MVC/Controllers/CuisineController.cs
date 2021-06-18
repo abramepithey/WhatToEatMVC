@@ -92,27 +92,14 @@ namespace WhereToEat.MVC.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(cuisine);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CuisineExists(cuisine.CuisineId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                return View(newCuisine);
             }
-            return View(cuisine);
+
+            await _services.UpdateCuisine(newCuisine);
+            
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Cuisine/Delete/5
