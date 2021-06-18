@@ -50,9 +50,25 @@ namespace WhereToEat.MVC.Services
             return model;
         }
 
-        public async Task<bool> UpdateCuisine(Guid cuisineId, CuisineViewModel updatedCuisine)
+        public async Task<bool> UpdateCuisine(CuisineViewModel updatedCuisine)
         {
-            throw new NotImplementedException();
+            var cuisineToUpdate = new Cuisine {CuisineId = updatedCuisine.CuisineId, Name = updatedCuisine.Name};
+            try
+            {
+                _context.Update(cuisineToUpdate);
+                return await _context.SaveChangesAsync() == 1;
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!CuisineExists(updatedCuisine.CuisineId))
+                {
+                    return false;
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
         public async Task<bool> DeleteCuisine(Guid cuisineId)
