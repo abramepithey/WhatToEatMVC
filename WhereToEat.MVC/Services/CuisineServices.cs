@@ -35,9 +35,19 @@ namespace WhereToEat.MVC.Services
             return await _context.SaveChangesAsync() == 1;
         }
 
-        public async Task<CuisineViewModel> GetCuisineById(Guid cuisineId)
+        public async Task<CuisineViewModel> GetCuisineById(Guid? cuisineId)
         {
-            throw new NotImplementedException();
+            if (cuisineId == null)
+            {
+                return null;
+            }
+            var cuisine = await _context.Cuisines.FindAsync(cuisineId);
+            if (cuisine == null)
+            {
+                return null;
+            }
+            var model = new CuisineViewModel { CuisineId = cuisine.CuisineId, Name = cuisine.Name };
+            return model;
         }
 
         public async Task<bool> UpdateCuisine(Guid cuisineId, CuisineViewModel updatedCuisine)
