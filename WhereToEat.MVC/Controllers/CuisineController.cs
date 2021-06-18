@@ -59,12 +59,14 @@ namespace WhereToEat.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CuisineId,Name")] CuisineViewModel cuisine)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                await _services.CreateCuisine(cuisine);
-                return RedirectToAction(nameof(Index));
+                return View(cuisine);
             }
-            return View(cuisine);
+            
+            await _services.CreateCuisine(cuisine);
+            
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Cuisine/Edit/5
