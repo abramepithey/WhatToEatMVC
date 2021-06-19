@@ -9,8 +9,8 @@ namespace WhereToEat.MVC.Contracts
     {
         Task<IList<StyleViewModel>> ListCuisines();
         Task<bool> CreateCuisine(StyleViewModel newCuisine);
-        Task<StyleViewModel> GetCuisineById(Guid cuisineId);
-        Task<bool> UpdateCuisine(Guid cuisineId, StyleDetailsModel updatedCuisine);
+        Task<StyleViewModel> GetCuisineById(Guid? cuisineId);
+        Task<bool> UpdateCuisine(StyleViewModel updatedCuisine);
         Task<bool> DeleteCuisine(Guid cuisineId);
     }
 }
