@@ -35,6 +35,7 @@ namespace WhereToEat.MVC
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddTransient<ICuisineServices, CuisineServices>();
+            services.AddTransient<IStyleServices, StyleServices>();
 
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
