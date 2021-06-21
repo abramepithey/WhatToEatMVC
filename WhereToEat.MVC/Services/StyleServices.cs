@@ -39,7 +39,19 @@ namespace WhereToEat.MVC.Services
 
         public async Task<StyleViewModel> GetStyleById(Guid? styleId)
         {
-            throw new NotImplementedException();
+            if (styleId == null)
+            {
+                return null;
+            }
+
+            var style = await _context.Styles.FindAsync(styleId);
+            if (style == null)
+            {
+                return null;
+            }
+
+            var model = new StyleViewModel {StyleId = style.StyleId, Name = style.Name};
+            return model;
         }
 
         public async Task<bool> UpdateStyle(StyleViewModel updatedStyle)
