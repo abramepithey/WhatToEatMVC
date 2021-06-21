@@ -53,14 +53,13 @@ namespace WhereToEat.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("StyleId,Name")] StyleViewModel newStyle)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                style.StyleId = Guid.NewGuid();
-                _context.Add(style);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View(newStyle);
             }
-            return View(style);
+
+            await _services.CreateStyle(newStyle);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Style/Edit/5
