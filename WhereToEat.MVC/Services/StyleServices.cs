@@ -2,33 +2,41 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WhereToEat.MVC.Contracts;
+using WhereToEat.MVC.Data;
 using WhereToEat.MVC.Models.Styles;
 
 namespace WhereToEat.MVC.Services
 {
     public class StyleServices : IStyleServices
     {
-        public async Task<IList<StyleViewModel>> ListCuisines()
+        private readonly ApplicationDbContext _context;
+
+        public StyleServices(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+        
+        public async Task<IList<StyleViewModel>> ListStyles()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<bool> CreateCuisine(StyleViewModel newCuisine)
+        public async Task<bool> CreateStyle(StyleViewModel newStyle)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<StyleViewModel> GetCuisineById(Guid? cuisineId)
+        public async Task<StyleViewModel> GetStyleById(Guid? styleId)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<bool> UpdateCuisine(StyleViewModel updatedCuisine)
+        public async Task<bool> UpdateStyle(StyleViewModel updatedStyle)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<bool> DeleteCuisine(Guid cuisineId)
+        public async Task<bool> DeleteStyle(Guid styleId)
         {
             throw new NotImplementedException();
         }
