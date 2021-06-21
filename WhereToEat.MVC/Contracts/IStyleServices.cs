@@ -7,10 +7,10 @@ namespace WhereToEat.MVC.Contracts
 {
     public interface IStyleServices
     {
-        Task<IList<StyleViewModel>> ListCuisines();
-        Task<bool> CreateCuisine(StyleViewModel newCuisine);
-        Task<StyleViewModel> GetCuisineById(Guid? cuisineId);
-        Task<bool> UpdateCuisine(StyleViewModel updatedCuisine);
-        Task<bool> DeleteCuisine(Guid cuisineId);
+        Task<IList<StyleViewModel>> ListStyles();
+        Task<bool> CreateStyle(StyleViewModel newStyle);
+        Task<StyleViewModel> GetStyleById(Guid? styleId);
+        Task<bool> UpdateStyle(StyleViewModel updatedStyle);
+        Task<bool> DeleteStyle(Guid styleId);
     }
 }
