@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WhereToEat.MVC.Contracts;
 using WhereToEat.MVC.Data;
+using WhereToEat.MVC.Models.Styles;
 
 namespace WhereToEat.MVC.Controllers
 {
@@ -56,7 +57,7 @@ namespace WhereToEat.MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StyleId,Name")] Style style)
+        public async Task<IActionResult> Create([Bind("StyleId,Name")] StyleViewModel newStyle)
         {
             if (ModelState.IsValid)
             {
@@ -89,7 +90,7 @@ namespace WhereToEat.MVC.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("StyleId,Name")] Style style)
+        public async Task<IActionResult> Edit(Guid id, [Bind("StyleId,Name")] StyleViewModel updatedStyle)
         {
             if (id != style.StyleId)
             {
