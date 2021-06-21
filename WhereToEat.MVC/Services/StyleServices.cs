@@ -32,7 +32,9 @@ namespace WhereToEat.MVC.Services
 
         public async Task<bool> CreateStyle(StyleViewModel newStyle)
         {
-            throw new NotImplementedException();
+            Style style = new Style {StyleId = new Guid(), Name = newStyle.Name};
+            _context.Styles.Add(style);
+            return await _context.SaveChangesAsync() == 1;
         }
 
         public async Task<StyleViewModel> GetStyleById(Guid? styleId)
