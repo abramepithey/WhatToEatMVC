@@ -117,10 +117,5 @@ namespace WhereToEat.MVC.Controllers
             await _services.DeleteStyle(id);
             return RedirectToAction(nameof(Index));
         }
-
-        private bool StyleExists(Guid id)
-        {
-            return _context.Styles.Any(e => e.StyleId == id);
-        }
     }
 }
