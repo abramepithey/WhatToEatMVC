@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.EntityFrameworkCore;
 using WhereToEat.MVC.Contracts;
 using WhereToEat.MVC.Data;
 using WhereToEat.MVC.Models.Styles;
@@ -18,7 +21,13 @@ namespace WhereToEat.MVC.Services
         
         public async Task<IList<StyleViewModel>> ListStyles()
         {
-            throw new NotImplementedException();
+            List<StyleViewModel> styles = await _context.Styles.Select(s =>
+                new StyleViewModel()
+                {
+                    StyleId = s.StyleId,
+                    Name = s.Name
+                }).ToListAsync();
+            return styles;
         }
 
         public async Task<bool> CreateStyle(StyleViewModel newStyle)
