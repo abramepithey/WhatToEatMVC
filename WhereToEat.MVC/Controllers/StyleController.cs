@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using WhereToEat.MVC.Contracts;
 using WhereToEat.MVC.Data;
 
 namespace WhereToEat.MVC.Controllers
@@ -12,10 +13,12 @@ namespace WhereToEat.MVC.Controllers
     public class StyleController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IStyleServices _services;
 
-        public StyleController(ApplicationDbContext context)
+        public StyleController(ApplicationDbContext context, IStyleServices services)
         {
             _context = context;
+            _services = services;
         }
 
         // GET: Style
