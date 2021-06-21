@@ -80,32 +80,21 @@ namespace WhereToEat.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id, [Bind("StyleId,Name")] StyleViewModel updatedStyle)
         {
-            if (id != style.StyleId)
+            if (id != updatedStyle.StyleId)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(style);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!StyleExists(style.StyleId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                return View(updatedStyle);
             }
-            return View(style);
+
+            if (await _services.UpdateStyle(updatedStyle) == false)
+            {
+                return NotFound();
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Style/Delete/5
