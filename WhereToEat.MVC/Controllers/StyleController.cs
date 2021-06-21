@@ -31,13 +31,7 @@ namespace WhereToEat.MVC.Controllers
         // GET: Style/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var style = await _context.Styles
-                .FirstOrDefaultAsync(m => m.StyleId == id);
+            var style = await _services.GetStyleById(id);
             if (style == null)
             {
                 return NotFound();
@@ -72,12 +66,7 @@ namespace WhereToEat.MVC.Controllers
         // GET: Style/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var style = await _context.Styles.FindAsync(id);
+            var style = await _services.GetStyleById(id);
             if (style == null)
             {
                 return NotFound();
@@ -123,13 +112,7 @@ namespace WhereToEat.MVC.Controllers
         // GET: Style/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var style = await _context.Styles
-                .FirstOrDefaultAsync(m => m.StyleId == id);
+            var style = await _services.GetStyleById(id);
             if (style == null)
             {
                 return NotFound();
