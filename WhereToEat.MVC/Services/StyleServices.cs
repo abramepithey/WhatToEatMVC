@@ -56,7 +56,23 @@ namespace WhereToEat.MVC.Services
 
         public async Task<bool> UpdateStyle(StyleViewModel updatedStyle)
         {
-            throw new NotImplementedException();
+            var styleToUpdate = new Style {StyleId = updatedStyle.StyleId, Name = updatedStyle.Name};
+            try
+            {
+                _context.Update(styleToUpdate);
+                return await _context.SaveChangesAsync() == 1;
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!StyleExists(updatedStyle.StyleId))
+                {
+                    return false;
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
         public async Task<bool> DeleteStyle(Guid styleId)
