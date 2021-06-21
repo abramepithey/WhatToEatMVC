@@ -114,9 +114,7 @@ namespace WhereToEat.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            var style = await _context.Styles.FindAsync(id);
-            _context.Styles.Remove(style);
-            await _context.SaveChangesAsync();
+            await _services.DeleteStyle(id);
             return RedirectToAction(nameof(Index));
         }
 
