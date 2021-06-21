@@ -79,5 +79,10 @@ namespace WhereToEat.MVC.Services
         {
             throw new NotImplementedException();
         }
+
+        private bool StyleExists(Guid id)
+        {
+            return _context.Styles.Any(e => e.StyleId == id);
+        }
     }
 }
