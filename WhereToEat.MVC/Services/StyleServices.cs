@@ -77,7 +77,9 @@ namespace WhereToEat.MVC.Services
 
         public async Task<bool> DeleteStyle(Guid styleId)
         {
-            throw new NotImplementedException();
+            var style = await _context.Styles.FindAsync(styleId);
+            _context.Styles.Remove(style);
+            return await _context.SaveChangesAsync() == 1;
         }
 
         private bool StyleExists(Guid id)
