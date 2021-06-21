@@ -25,7 +25,7 @@ namespace WhereToEat.MVC.Controllers
         // GET: Style
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Styles.ToListAsync());
+            return View(await _services.ListStyles());
         }
 
         // GET: Style/Details/5
