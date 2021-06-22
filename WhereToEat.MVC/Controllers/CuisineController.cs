@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ using WhereToEat.MVC.Models.Cuisines;
 
 namespace WhereToEat.MVC.Controllers
 {
+    [Authorize]
     public class CuisineController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -22,6 +24,7 @@ namespace WhereToEat.MVC.Controllers
             _services = services;
         }
 
+        [AllowAnonymous]
         // GET: Cuisine
         public async Task<IActionResult> Index()
         {
@@ -29,6 +32,7 @@ namespace WhereToEat.MVC.Controllers
             return View(cuisines);
         }
 
+        [AllowAnonymous]
         // GET: Cuisine/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
