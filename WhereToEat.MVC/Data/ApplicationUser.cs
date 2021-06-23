@@ -5,6 +5,6 @@ namespace WhereToEat.MVC.Data
 {
     public class ApplicationUser : IdentityUser
     {
-        public virtual IEnumerable<ApplicationUser> Connections { get; set; }
+        public IEnumerable<Connection> Connections { get; set; }
     }
 }
