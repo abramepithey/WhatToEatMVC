@@ -12,6 +12,7 @@ using WhereToEat.MVC.Data;
 
 namespace WhereToEat.MVC.Controllers
 {
+    [Authorize]
     public class ConnectionController : Controller
     {
         private readonly ApplicationDbContext _context;
