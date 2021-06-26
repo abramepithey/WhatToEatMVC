@@ -69,6 +69,7 @@ namespace WhereToEat.MVC.Controllers
             if (ModelState.IsValid)
             {
                 connection.ConnectionId = Guid.NewGuid();
+                connection.Sender = await _context.ApplicationUsers.FindAsync(_userId);
                 _context.Add(connection);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
