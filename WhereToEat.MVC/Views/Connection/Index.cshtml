@@ -18,9 +18,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Receiver)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IsAccepted)
-            </th>
             <th></th>
         </tr>
     </thead>
@@ -28,13 +25,10 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Sender.Id)
+                @Html.DisplayFor(modelItem => item.Sender.Email)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Receiver.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsAccepted)
+                @Html.DisplayFor(modelItem => item.Receiver.Email)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ConnectionId">Edit</a> |
