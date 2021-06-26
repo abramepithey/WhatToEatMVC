@@ -33,6 +33,8 @@ namespace WhereToEat.MVC
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
+            
+            services.AddHttpContextAccessor();
 
             services.AddTransient<ICuisineServices, CuisineServices>();
             services.AddTransient<IStyleServices, StyleServices>();
