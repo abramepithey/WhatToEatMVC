@@ -55,7 +55,7 @@ namespace WhereToEat.MVC.Controllers
         public IActionResult Create()
         {
             ViewData["ReceiverId"] = new SelectList(_context.ApplicationUsers, "Id", "Email");
-            ViewData["SenderId"] = new SelectList(_context.ApplicationUsers, "Id", "Email");
+            //ViewData["SenderId"] = new SelectList(_context.ApplicationUsers, "Id", "Email");
             return View();
         }
 
@@ -74,7 +74,7 @@ namespace WhereToEat.MVC.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ReceiverId"] = new SelectList(_context.ApplicationUsers, "Id", "Email", connection.ReceiverId);
-            ViewData["SenderId"] = new SelectList(_context.ApplicationUsers, "Id", "Email", connection.SenderId);
+            //ViewData["SenderId"] = new SelectList(_context.ApplicationUsers, "Id", "Email", connection.SenderId);
             return View(connection);
         }
 
