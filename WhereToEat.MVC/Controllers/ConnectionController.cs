@@ -119,9 +119,9 @@ namespace WhereToEat.MVC.Controllers
             return View(await applicationDbContext.ToListAsync());
         }
         
-        public PartialViewResult AcceptConnectionPartial(Guid id)
+        public PartialViewResult AcceptConnectionPartial(Connection connection)
         {
-            return PartialView("_AcceptConnectionPartial");
+            return PartialView("_AcceptConnectionPartial", connection);
         }
         
         [HttpPost]
