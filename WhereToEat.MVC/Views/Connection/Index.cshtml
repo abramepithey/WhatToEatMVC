@@ -7,14 +7,14 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
-    <a asp-action="ConnectionRequestsIndex">New Requests</a>
+    <a asp-action="Create" class="btn btn-secondary">Create New</a> | 
+    <a asp-action="ConnectionRequestsIndex" class="btn btn-secondary">New Requests</a>
 </p>
 <table class="table">
     <thead>
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ConnectedUser)
+            Username
         </th>
         <th></th>
     </tr>
