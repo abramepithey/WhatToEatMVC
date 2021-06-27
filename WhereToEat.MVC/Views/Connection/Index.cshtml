@@ -1,4 +1,4 @@
-@model IEnumerable<WhereToEat.MVC.Data.Connection>
+@model IEnumerable<WhereToEat.MVC.Models.Connections.ConnectionViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -8,27 +8,23 @@
 
 <p>
     <a asp-action="Create">Create New</a>
+    <a asp-action="ConnectionRequestsIndex">New Requests</a>
 </p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Sender)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Receiver)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ConnectedUser)
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model)
+    {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Sender.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Receiver.Email)
+                @Html.DisplayFor(modelItem => item.ConnectedUser.Email)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ConnectionId">Edit</a> |
@@ -36,6 +32,6 @@
                 <a asp-action="Delete" asp-route-id="@item.ConnectionId">Delete</a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>
