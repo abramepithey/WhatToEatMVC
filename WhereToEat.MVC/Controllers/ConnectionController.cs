@@ -111,6 +111,49 @@ namespace WhereToEat.MVC.Controllers
             ViewData["SenderId"] = new SelectList(_context.ApplicationUsers, "Id", "Email", connection.SenderId);
             return View(connection);
         }
+        
+        [HttpGet]
+        public async Task<IActionResult> ConnectionRequestsIndex()
+        {
+            var applicationDbContext = _context.Connections.Where(c => c.Receiver.Id == _userId && c.IsAccepted == false).Include(r => r.Sender);
+            return View(await applicationDbContext.ToListAsync());
+        }
+        
+        public PartialViewResult AcceptConnectionPartial(Guid id)
+        {
+            return PartialView("_AcceptConnectionPartial");
+        }
+        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> AcceptConnection(Guid id)
+        {
+            var connection = await _context.Connections.FindAsync(id);
+            if (connection == null || connection.ReceiverId != _userId)
+            {
+                Console.WriteLine("Mismatch");
+                return RedirectToAction(nameof(Index));
+            }
+
+            try
+            {
+                connection.IsAccepted = true;
+                _context.Update(connection);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ConnectionExists(connection.ConnectionId))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
+        }
 
         // POST: Connections/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
