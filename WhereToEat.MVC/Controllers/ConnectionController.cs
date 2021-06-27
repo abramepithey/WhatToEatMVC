@@ -69,7 +69,7 @@ namespace WhereToEat.MVC.Controllers
         // GET: Connections/Create
         public IActionResult Create()
         {
-            ViewData["ReceiverId"] = new SelectList(_context.ApplicationUsers, "Id", "Email");
+            ViewData["ReceiverId"] = new SelectList(_context.ApplicationUsers.Where(u => u.Id != _userId), "Id", "Email");
             //ViewData["SenderId"] = new SelectList(_context.ApplicationUsers, "Id", "Email");
             return View();
         }
@@ -89,7 +89,7 @@ namespace WhereToEat.MVC.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ReceiverId"] = new SelectList(_context.ApplicationUsers, "Id", "Email", connection.ReceiverId);
+            ViewData["ReceiverId"] = new SelectList(_context.ApplicationUsers.Where(u => u.Id != _userId), "Id", "Email", connection.ReceiverId);
             //ViewData["SenderId"] = new SelectList(_context.ApplicationUsers, "Id", "Email", connection.SenderId);
             return View(connection);
         }
