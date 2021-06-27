@@ -126,7 +126,7 @@ namespace WhereToEat.MVC.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AcceptConnection(Guid id)
+        public async Task<IActionResult> AcceptConnection([Bind("ConnectionId,SenderId,ReceiverId,IsAccepted")] Connection connection)
         {
             var connection = await _context.Connections.FindAsync(id);
             if (connection == null || connection.ReceiverId != _userId)
