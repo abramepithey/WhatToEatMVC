@@ -1,0 +1,17 @@
+@model WhereToEat.MVC.Models.Connections.ConnectionAcceptModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<form asp-action="AcceptConnection">
+    <div class="form-group">
+        <input type="hidden" name="id" value="@Model">
+        <input type="submit" value="Accept">
+    </div>
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
