@@ -128,31 +128,28 @@ namespace WhereToEat.MVC.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AcceptConnection([Bind("ConnectionId,SenderId,ReceiverId,IsAccepted")] Connection connection)
         {
-            var connection = await _context.Connections.FindAsync(id);
-            if (connection == null || connection.ReceiverId != _userId)
+            if (ModelState.IsValid)
             {
-                Console.WriteLine("Mismatch");
+                try
+                {
+                    connection.IsAccepted = true;
+                    _context.Update(connection);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!ConnectionExists(connection.ConnectionId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
                 return RedirectToAction(nameof(Index));
             }
-
-            try
-            {
-                connection.IsAccepted = true;
-                _context.Update(connection);
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ConnectionExists(connection.ConnectionId))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-            return RedirectToAction(nameof(Index));
+            return PartialView("_AcceptConnectionPartial", connection);
         }
 
         // POST: Connections/Edit/5
