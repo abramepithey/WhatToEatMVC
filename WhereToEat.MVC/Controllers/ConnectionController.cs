@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WhereToEat.MVC.Data;
+using WhereToEat.MVC.Models.Connections;
 
 namespace WhereToEat.MVC.Controllers
 {
@@ -27,7 +28,21 @@ namespace WhereToEat.MVC.Controllers
         // GET: Connections
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Connections.Include(c => c.Receiver).Include(c => c.Sender);
+            var initiatedConnections = _context.Connections.Where(c => c.Sender.Id == _userId && c.IsAccepted)
+                .Include(r => r.Receiver)
+                .Select(c => new ConnectionViewModel
+                {
+                    ConnectionId = c.ConnectionId,
+                    ConnectedUser = c.Receiver
+                });
+            var receivedConnections = _context.Connections.Where(c => c.Receiver.Id == _userId && c.IsAccepted)
+                .Include(r => r.Sender)
+                .Select(c => new ConnectionViewModel
+                {
+                    ConnectionId = c.ConnectionId,
+                    ConnectedUser = c.Sender
+                });
+            var applicationDbContext = initiatedConnections.Concat(receivedConnections);
             return View(await applicationDbContext.ToListAsync());
         }
 
