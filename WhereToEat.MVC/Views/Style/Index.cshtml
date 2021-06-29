@@ -1,3 +1,4 @@
+@using WhereToEat.MVC.Models.Styles
 @model IEnumerable<WhereToEat.MVC.Models.Styles.StyleViewModel>
 
 @{
@@ -6,9 +7,6 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
     <tr>
@@ -28,3 +26,5 @@
     }
     </tbody>
 </table>
+
+@await Html.PartialAsync("_CreatePartial", new StyleViewModel())
