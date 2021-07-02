@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace WhereToEat.MVC.Data
@@ -16,5 +17,8 @@ namespace WhereToEat.MVC.Data
         
         public Guid CuisineId { get; set; }
         public Cuisine Cuisine { get; set; }
+
+        public ICollection<ChoiceGroup> ChoiceGroups { get; set; }
+        public IEnumerable<ChoiceMember> ChoiceMembers { get; set; }
     }
 }
