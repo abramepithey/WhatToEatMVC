@@ -35,6 +35,13 @@ namespace WhereToEat.MVC.Data
                 .WithMany()
                 .HasForeignKey(u => u.ReceiverId)
                 .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<ChoiceMember>()
+                .HasKey(k => new { k.UserId, k.ChoiceGroupId });
+
+            modelBuilder.Entity<ChoiceMember>()
+                .HasMany(cm => cm.DislikedRestaurants)
+                .WithMany(dr => dr.ChoiceMembers);
         }
     }
 }
