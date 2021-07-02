@@ -18,6 +18,8 @@ namespace WhereToEat.MVC.Data
         public DbSet<Restaurant> Restaurants { get; set; }
         public DbSet<Cuisine> Cuisines { get; set; }
         public DbSet<Style> Styles { get; set; }
+        public DbSet<ChoiceGroup> ChoiceGroups { get; set; }
+        public DbSet<ChoiceMember> ChoiceMembers { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
