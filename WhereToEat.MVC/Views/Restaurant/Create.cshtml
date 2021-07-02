@@ -19,15 +19,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
+                <input type="range" asp-for="Price" min="1" max="5" value="1" class="form-control custom-range" />
                 <span asp-validation-for="Price" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="StyleId" class="control-label"></label>
+                <label for="StyleId" class="control-label">Style</label>
                 <select asp-for="StyleId" class ="form-control" asp-items="ViewBag.StyleId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="CuisineId" class="control-label"></label>
+                <label for="CuisineId" class="control-label">Cuisine</label>
                 <select asp-for="CuisineId" class ="form-control" asp-items="ViewBag.CuisineId"></select>
             </div>
             <div class="form-group">

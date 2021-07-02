@@ -1,35 +1,30 @@
+@using WhereToEat.MVC.Models.Styles
 @model IEnumerable<WhereToEat.MVC.Models.Styles.StyleViewModel>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Styles</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.StyleId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.StyleId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.StyleId">Delete</a>
+                <a asp-action="Details" asp-route-id="@item.StyleId" style="text-decoration: underline">@Html.DisplayFor(modelItem => item.Name)</a>
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>
+
+@await Html.PartialAsync("_CreatePartial", new StyleViewModel())
