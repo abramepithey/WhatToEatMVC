@@ -5,5 +5,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <ActiveDebugProfile>WhereToEat.MVC</ActiveDebugProfile>
+    <NameOfLastUsedPublishProfile>C:\Users\abram\Source\Repos\abramepithey\WhatToEatMVC\.github\workflows\WhereToEatMVC.yml</NameOfLastUsedPublishProfile>
+    <ShowAllFiles>false</ShowAllFiles>
   </PropertyGroup>
 </Project>
